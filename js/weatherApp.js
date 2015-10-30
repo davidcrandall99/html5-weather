@@ -3,28 +3,29 @@ app.controller("weatherCtrl", function ($scope, $http) {
 	$scope.latitude = "getting information";
 	$scope.longitude = "getting information";
 	$scope.city = "Getting your city";
+
 	function showLocation(position) {
-		$scope.$apply(function() { 
-			$scope.latitude = position.coords.latitude; 
+		$scope.$apply(function () {
+			$scope.latitude = position.coords.latitude;
 		});
-		
-		$scope.$apply(function() {
+
+		$scope.$apply(function () {
 			$scope.longitude = position.coords.longitude;
 		});
-		
+
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&APPID=eda675af27838319581929bf29229f14&l";
 		console.log(theUrl);
 		$http.get(theUrl)
-			.success(function(response) {
-			$scope.city = response.name;
-			var kelvin = response.main.temp;
-			var degreesExact = (kelvin * (9/5)) - 459.67;
-			var degrees = Math.round(degreesExact)
-			$scope.temperature = degrees;
-		});
-		
+			.success(function (response) {
+				$scope.city = response.name;
+				var kelvin = response.main.temp;
+				var degreesExact = (kelvin * (9 / 5)) - 459.67;
+				var degrees = Math.round(degreesExact)
+				$scope.temperature = degrees;
+			});
+
 	}
 
 	function errorHandler(err) {
@@ -36,14 +37,14 @@ app.controller("weatherCtrl", function ($scope, $http) {
 	}
 
 
-		if (navigator.geolocation) {
-			// timeout at 60000 milliseconds (60 seconds)
-			var options = {
-				timeout: 60000
-			};
-			navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
-			
-		} else {
-			alert("Sorry, browser does not support geolocation!");
-		}
+	if (navigator.geolocation) {
+		// timeout at 60000 milliseconds (60 seconds)
+		var options = {
+			timeout: 60000
+		};
+		navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+
+	} else {
+		alert("Sorry, browser does not support geolocation!");
+	}
 });

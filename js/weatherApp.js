@@ -46,6 +46,4 @@ app.controller("weatherCtrl", function ($scope, $http) {
 		} else {
 			alert("Sorry, browser does not support geolocation!");
 		}
-
-
 });

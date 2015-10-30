@@ -17,7 +17,8 @@
 <h1>Hello World</h1>
 	<div id="wrapper">
 		<div id="info" ng-controller="weatherCtrl">
-			<p>Latitude: {{ latitude }}<br/>Longitude: {{ longitude }}<br/>You Live in {{ city }} and it is about {{ temperature }} degrees.</p>
+			<p ng-show="foundLocation">Latitude: {{ latitude }}<br/>Longitude: {{ longitude }}<br/>You Live in {{ city }} and it is about {{ temperature }} degrees.</p>
+			<p ng-show="!foundLocation">Finding your information...</p>
 		</div>
 	</div>
 	

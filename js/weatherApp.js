@@ -3,7 +3,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 	$scope.latitude = "getting information";
 	$scope.longitude = "getting information";
 	$scope.city = "Getting your city";
-
+	!$scope.foundLocation;
 	function showLocation(position) {
 		$scope.$apply(function () {
 			$scope.latitude = position.coords.latitude;
@@ -24,7 +24,10 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				var degreesExact = (kelvin * (9 / 5)) - 459.67;
 				var degrees = Math.round(degreesExact)
 				$scope.temperature = degrees;
+				$scope.foundLocation = true;
 			});
+
+			
 
 	}
 

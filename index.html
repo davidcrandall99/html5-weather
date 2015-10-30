@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="weatherApp">
 <head>
 	<meta charset="utf-8">
 	<title>HTML5 Weather Splash Screen</title>
@@ -8,17 +8,18 @@
 	<!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+	<script src="js/angular.min.js"></script>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
+	<script src="js/weatherApp.js" type="text/javascript"></script>
 </head>
 <body>
 
-	<h1>Hello World</h1>
+<h1>Hello World</h1>
 	<div id="wrapper">
-		<div id="info">
+		<div id="info" ng-controller="weatherCtrl">
+			<p>Latitude: {{ latitude }}<br/>Longitude: {{ longitude }}</p>
 		</div>
 	</div>
 	
-	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-	<script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-	<script src="js/functions.js" type="text/javascript"></script>
 </body>
 </html>

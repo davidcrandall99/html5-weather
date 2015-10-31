@@ -20,11 +20,32 @@ app.controller("weatherCtrl", function ($scope, $http) {
 		$http.get(theUrl)
 			.success(function (response) {
 				$scope.city = response.name;
+				//variables
 				var kelvin = response.main.temp;
 				var degreesExact = (kelvin * (9 / 5)) - 459.67;
 				var degrees = Math.round(degreesExact)
+				var weatherType = response.weather[0].main;
+				var date = new Date();
+				var time = date.getHours;
+			
+				console.log(weatherType)
 				$scope.temperature = degrees;
 				$scope.foundLocation = true;
+				
+				if (weatherType = "Clear") {
+						$scope.imageName = "clear";
+				}
+				else {
+					$scope.imageName = "cloudy"
+				}
+				if (time => 18) {
+					$scope.dayNight = "night";
+				}
+				else {
+					$scope.dayNight = "day";
+				}
+				$scope.bgImage = "background-image: url(images/" + $scope.dayNight + "/" + $scope.imageName + ".jpg)";
+				
 			});
 
 			

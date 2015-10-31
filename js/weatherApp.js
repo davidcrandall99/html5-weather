@@ -4,6 +4,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 	$scope.longitude = "getting information";
 	$scope.city = "Getting your city";
 	!$scope.foundLocation;
+
 	function showLocation(position) {
 		$scope.$apply(function () {
 			$scope.latitude = position.coords.latitude;
@@ -27,29 +28,24 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				var weatherType = response.weather[0].main;
 				var date = new Date();
 				var time = date.getHours;
-			
+
 				console.log(weatherType)
 				$scope.temperature = degrees;
 				$scope.foundLocation = true;
-				
+
 				if (weatherType = "Clear") {
-						$scope.imageName = "clear";
-				}
-				else {
+					$scope.imageName = "clear";
+				} else {
 					$scope.imageName = "cloudy"
 				}
 				if (time => 18) {
 					$scope.dayNight = "night";
-				}
-				else {
+				} else {
 					$scope.dayNight = "day";
 				}
 				$scope.bgImage = "background-image: url(images/" + $scope.dayNight + "/" + $scope.imageName + ".jpg)";
-				
+
 			});
-
-			
-
 	}
 
 	function errorHandler(err) {
@@ -59,8 +55,6 @@ app.controller("weatherCtrl", function ($scope, $http) {
 			alert("Error: Position is unavailable!");
 		}
 	}
-
-
 	if (navigator.geolocation) {
 		// timeout at 60000 milliseconds (60 seconds)
 		var options = {

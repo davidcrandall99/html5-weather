@@ -1,9 +1,12 @@
 @import "bourbon/bourbon";
 $color: #efefef;
+
 //SPINNER VALUES
 $size: 40px;
 $speed: 0.75s;
-$thickness: 8px; // Odd numbers created a "wobble" effect.
+$thickness: 8px;
+
+
 * {
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
@@ -47,20 +50,27 @@ html {
 	z-index: 0;
 }
 #info {
-	width: 350px;
-	padding: 20px;
+	min-width: 350px;
+	padding: 40px;
 	box-sizing: border-box;
 	background: rgba(0, 0, 0, 0.25);
 	position: absolute;
 	left: 0;
 	top: 30%;
+	text-align: left;
 	p {
 		color: #fff;
 		font-weight: 200;
 		span.degrees {
 			font-size: 13em;
 			font-weight: 100;
+			margin-top: -40px;
+			display: inline-block;
 		}
+		span.desc {
+			float: right;
+			margin-right: 10px;
+			}
 	}
 }
 #loadScreen {

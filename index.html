@@ -14,13 +14,20 @@
 </head>
 <body ng-controller="weatherCtrl">
 
-
-	<div id="wrapper" style="{{ bgImage }}">
+	<div ng-show="!foundLocation" id="loadScreen">
+		<p>Finding your information...</p>
+	</div>
+	
+	
+	<div ng-show="foundLocation" id="wrapper" style="{{ bgImage }}">
 		<div id="info" >
-			<p ng-show="foundLocation">Latitude: {{ latitude }}<br/>Longitude: {{ longitude }}<br/>You Live in {{ city }} and it is about {{ temperature }} degrees.</p>
-			<p ng-show="!foundLocation">Finding your information...</p>
+			<p>
+				<span class="degrees">{{ temperature }}&deg;</span><br/>
+				<span class="desc">The weather is {{ weatherType }} today.</span>
+			</p>
+			<!--<p>Latitude: {{ latitude }}<br/>Longitude: {{ longitude }}<br/>You Live in {{ city }} and it is about {{ temperature }} degrees.</p>-->
 		</div>
 	</div>
-	<p>{{ dayNight }}</p>
+	
 </body>
 </html>

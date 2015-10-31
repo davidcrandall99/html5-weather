@@ -17,6 +17,10 @@ app.controller("weatherCtrl", function ($scope, $http) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&APPID=eda675af27838319581929bf29229f14&l";
+		/*
+		TO TEST COORDINATES AND WEATHER TYPES
+		var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=41.0010&lon=-76.4540&APPID=eda675af27838319581929bf29229f14&l";
+		*/
 		console.log(theUrl);
 		$http.get(theUrl)
 			.success(function (response) {
@@ -27,22 +31,44 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				var degrees = Math.round(degreesExact)
 				var weatherType = response.weather[0].main;
 				var date = new Date();
-				var time = date.getHours;
+				var time = date.getHours();
+				//Verify output
+				console.log("Time: " + time);
+				console.log("Degrees: " + degrees);
+				console.log("Weather Type: " + weatherType);
 
-				console.log(weatherType)
+				//set scope
 				$scope.temperature = degrees;
 				$scope.foundLocation = true;
-
-				if (weatherType = "Clear") {
-					$scope.imageName = "clear";
-				} else {
-					$scope.imageName = "cloudy"
+				if (weatherType == "Clouds") {
+					$scope.weatherType = "Cloudy";
 				}
-				if (time => 18) {
+				else {
+					$scope.weatherType = weatherType;
+				}
+
+				//define image directories and names
+				if (weatherType == "Clear") {
+					$scope.imageName = "clear";
+				} 
+				else if (weatherType == "Clouds") {
+					$scope.imageName = "cloudy";
+				} 
+				else if (weatherType == "Partly Cloudy") {
+					$scope.imageName = "partlycloudy";
+				} 
+				else {
+					$scope.imageName = "rain";
+				}
+
+				//define image directory by time of day
+				if (time > 18) {
 					$scope.dayNight = "night";
 				} else {
 					$scope.dayNight = "day";
 				}
+
+				//Create full image CSS rule
 				$scope.bgImage = "background-image: url(images/" + $scope.dayNight + "/" + $scope.imageName + ".jpg)";
 
 			});

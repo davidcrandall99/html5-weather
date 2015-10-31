@@ -4,6 +4,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 	$scope.longitude = "getting information";
 	$scope.city = "Getting your city";
 	!$scope.foundLocation;
+	$scope.loading = true;
 
 	function showLocation(position) {
 		$scope.$apply(function () {
@@ -76,9 +77,19 @@ app.controller("weatherCtrl", function ($scope, $http) {
 
 	function errorHandler(err) {
 		if (err.code == 1) {
-			alert("Error: Access is denied!");
+			
+			$scope.$apply(function(){
+				$scope.loading = false;
+				$scope.declined = true;
+			});
+			
+			
+			
 		} else if (err.code == 2) {
-			alert("Error: Position is unavailable!");
+			$scope.$apply(function(){
+				$scope.loading = false;
+				$scope.notfound = true;
+			});
 		}
 	}
 	if (navigator.geolocation) {

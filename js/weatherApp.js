@@ -17,10 +17,10 @@ app.controller("weatherCtrl", function ($scope, $http) {
 		var latitude = position.coords.latitude;
 		var longitude = position.coords.longitude;
 		var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&APPID=eda675af27838319581929bf29229f14&l";
-		/*
-		TO TEST COORDINATES AND WEATHER TYPES
-		var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=41.0010&lon=-76.4540&APPID=eda675af27838319581929bf29229f14&l";
-		*/
+		
+		//TO TEST COORDINATES AND WEATHER TYPES
+		//var theUrl = "http://api.openweathermap.org/data/2.5/weather?lat=41.0010&lon=-76.4540&APPID=eda675af27838319581929bf29229f14&l";
+		
 		console.log(theUrl);
 		$http.get(theUrl)
 			.success(function (response) {

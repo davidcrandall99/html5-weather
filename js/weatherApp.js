@@ -33,10 +33,13 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				var weatherType = response.weather[0].main;
 				var date = new Date();
 				var time = date.getHours();
+				//generate random number for random picture
+				var randomNum = Math.floor(Math.random()*(3-1+1)+1);
 				//Verify output
 				console.log("Time: " + time);
 				console.log("Degrees: " + degrees);
 				console.log("Weather Type: " + weatherType);
+				console.log("Random number: " + randomNum);
 
 				//set scope
 				$scope.temperature = degrees;
@@ -56,7 +59,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 					$scope.imageName = "cloudy";
 				} 
 				else if (weatherType == "Partly Cloudy") {
-					$scope.imageName = "partlycloudy";
+					$scope.imageName = "partly-cloudy";
 				} 
 				else {
 					$scope.imageName = "rain";
@@ -70,7 +73,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				}
 
 				//Create full image CSS rule
-				$scope.bgImage = "background-image: url(images/" + $scope.dayNight + "/" + $scope.imageName + ".jpg)";
+				$scope.bgImage = "background-image: url(images/" + $scope.dayNight + "/" + $scope.imageName + + randomNum + ".jpg)";
 
 			});
 	}

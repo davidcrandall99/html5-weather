@@ -48,6 +48,9 @@ html {
 	transition: opacity 1s ease-in-out;
 	display: block !important;
 	z-index: 0;
+	#info {
+		opacity: 0;
+	}
 }
 #info {
 	min-width: 350px;
@@ -58,6 +61,7 @@ html {
 	left: 0;
 	top: 30%;
 	text-align: left;
+	opacity: 1;
 	p {
 		color: #fff;
 		font-weight: 200;

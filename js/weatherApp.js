@@ -31,6 +31,7 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				var degreesExact = (kelvin * (9 / 5)) - 459.67;
 				var degrees = Math.round(degreesExact)
 				var weatherType = response.weather[0].main;
+				var weatherDesc = response.weather[0].description;
 				var date = new Date();
 				var time = date.getHours();
 				//generate random number for random picture
@@ -54,15 +55,21 @@ app.controller("weatherCtrl", function ($scope, $http) {
 				//define image directories and names
 				if (weatherType == "Clear") {
 					$scope.imageName = "clear";
+					$scope.weather = "clear";
 				} 
 				else if (weatherType == "Clouds") {
-					$scope.imageName = "cloudy";
-				} 
-				else if (weatherType == "Partly Cloudy") {
-					$scope.imageName = "partly-cloudy";
+					if (weatherDesc == "scattered clouds") {
+						$scope.imageName = "partly-cloudy";
+						$scope.weather = "partly cloudy";
+					}
+					else {
+						$scope.imageName = "cloudy";
+						$scope.weather = "cloudy";
+					}
 				} 
 				else {
 					$scope.imageName = "rain";
+					$scope.weather = "rainy";
 				}
 
 				//define image directory by time of day

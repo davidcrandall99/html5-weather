@@ -25,8 +25,12 @@
 		
 	</div>
 	
-	
-	<div ng-show="foundLocation" id="wrapper" style="{{ bgImage }}">
+	<style>
+		#wrapper {
+			{{ bgImage }}
+		}
+	</style>
+	<div ng-show="foundLocation" id="wrapper">
 		<div id="info" >
 			<p>
 				<span class="degrees">{{ temperature }}&deg;</span><br/>
